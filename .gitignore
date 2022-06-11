@@ -2,6 +2,9 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+!**/.idea/
+!**/.idea/**.xml/
+!**/**.iml/
 
 ### Eclipse ###
 .apt_generated
@@ -21,7 +24,6 @@ bin/
 /dist/
 /nbdist/
 /.nb-gradle/
-/.idea/
 
 ### VS Code ###
 .vscode/
@@ -34,7 +36,6 @@ bin/
 
 # Log file
 *.log
-*.xml
 
 # BlueJ files
 *.ctxt
@@ -53,4 +54,3 @@ bin/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
