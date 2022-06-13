@@ -5,7 +5,7 @@ public class InsertionSort {
         Random rng = new Random(3);
         ArrayList<Integer> usedNumber = new ArrayList<>();
 
-        int[] input = new int[500];
+        int[] input = new int[100000];
         int len = input.length;
         int roll;
 

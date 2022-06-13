@@ -7,7 +7,7 @@ public class BubbleSort {
 
         Random rng = new Random();
         ArrayList<Integer> usedNumber = new ArrayList<>();
-        int[] input = new int[100000];
+        int[] input = new int[10000];
         int roll, len = input.length;
 
         for (int i = 0; i < len; i++) {
@@ -18,7 +18,7 @@ public class BubbleSort {
             usedNumber.add(roll);
             input[i] = roll;
         }
-        // Actual Time in Miliseconds!
+        // Actual Time in Milli-seconds!
         long startTime = System.currentTimeMillis();
         // Sorting starts here
         for (int i = 0; i < len - 1; i++) {

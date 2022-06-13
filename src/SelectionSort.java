@@ -7,7 +7,7 @@ public class SelectionSort {
 
         Random rng = new Random();
         ArrayList<Integer> usedNumber = new ArrayList<>();
-        int[] input = new int[100000];
+        int[] input = new int[10000];
         int roll, len = input.length;
 
         // Declare Variables in the Array
@@ -19,7 +19,7 @@ public class SelectionSort {
             usedNumber.add(roll);
             input[i] = roll;
         }
-
+        // Actual Time
         long startTime = System.currentTimeMillis();
         
         // Sorting starts here
@@ -33,6 +33,7 @@ public class SelectionSort {
             }
         }
         System.out.println(Arrays.toString(input));
+        // Actual Time - StartTime  = Time the program took to Sort the Array!
         System.out.println((System.currentTimeMillis() - startTime));
     }
 }
