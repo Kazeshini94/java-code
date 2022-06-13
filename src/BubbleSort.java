@@ -18,10 +18,10 @@ public class BubbleSort {
             usedNumber.add(roll);
             input[i] = roll;
         }
-
+        // Actual Time in Miliseconds!
         long startTime = System.currentTimeMillis();
-
-        for (int i = 0; i < len - 1; i++) {                                                       // Sorting starts here
+        // Sorting starts here
+        for (int i = 0; i < len - 1; i++) {
             for (int j = 1; j < len; j++) {
                 int flow = input[j];
                 int check = j - 1;
@@ -33,6 +33,7 @@ public class BubbleSort {
             }
         }
         System.out.println(Arrays.toString(input));
+        // Actual Time - StartTime  = Time the program took to Sort the Array!
         System.out.println((System.currentTimeMillis() - startTime));
     }
 }
