@@ -12,7 +12,7 @@ public class InsertionSort {
 
             while (check >= 0 && input[check] > flow) {                 // Compares input[i] with all variables before !
                 input[check + 1] = input[check];                                // as long as there a lower Variables !!
-                check = check - 1;
+                check -= 1;
             }
             input[check +1] = flow;                                          // If no Variables are Lower than Input[i],
         }                                                                              // Set input[i] at that position!
