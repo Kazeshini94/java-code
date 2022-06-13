@@ -1,22 +1,38 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class InsertionSort {
     public static void main(String[] args) {
+        Random rng = new Random(3);
+        ArrayList<Integer> usedNumber = new ArrayList<>();
 
-        int [] input = {4,7,1,3,8,9,6,15,42,14,12,13};
-        int length = input.length;
+        int[] input = new int[500];
+        int len = input.length;
+        int roll;
 
-        for (int i = 1; i < length; ++i) { // Since input[0] gets sorted into an array with itself as the only variable,
+        for (int i = 0; i < len; i++) {                                               // Declare Variables in the Array!
+            do {
+                roll = rng.nextInt(0, input.length * 10);
+            }
+            while (usedNumber.contains(roll));
+            usedNumber.add(roll);
+            input[i] = roll;
+        }
+
+        long startTime = System.currentTimeMillis();
+        for (int i = 1; i < len; ++i) {    // Since input[0] gets sorted into an array with itself as the only variable,
             int flow = input[i];                             // we start our loop at input[i] which begins at input[1] !
             int check = i - 1;                                           // Variable to compare input[i] to input[check]
 
             while (check >= 0 && input[check] > flow) {                 // Compares input[i] with all variables before !
                 input[check + 1] = input[check];                                // as long as there a lower Variables !!
-                check = check - 1;
+                check -= 1;
             }
-            input[check +1] = flow;                                          // If no Variables are Lower than Input[i],
+            input[check + 1] = flow;                                         // If no Variables are Lower than Input[i],
         }                                                                              // Set input[i] at that position!
         System.out.println(Arrays.toString(input));
+        System.out.println(System.currentTimeMillis() - startTime);
     }
 }
 /*
