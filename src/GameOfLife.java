@@ -8,8 +8,9 @@ public class GameOfLife {
         Random rng = new Random();
 
         int gen, length;
-        System.out.println("How big shall the field be?");
+        System.out.println("How big shall the field be? \nRecommended: 20-50!");
         length = sc.nextInt();
+
         System.out.println("How many Generations do you wanna see?");
         gen = sc.nextInt();
 
@@ -32,7 +33,6 @@ public class GameOfLife {
             System.out.println();
         }
         System.out.println();
-
         // Call to Recursive Function nextGeneration
         nextGeneration(neighborCheck(map), gen, map);
     }
@@ -84,38 +84,16 @@ public class GameOfLife {
                 if (map[y][x] && (neighbor[y][x] == 3 || neighbor[y][x] == 2)) {
                     alive[y][x] = true;
                 }
-                if ( !map[y][x] && neighbor[y][x] == 3 ) {
-                    alive[y][x] = true;
-                }
-                if (neighbor[y][x] > 3 || neighbor[y][x] < 2) {
-                    alive[y][x] = false;
-                }
+                else alive[y][x] = !map[y][x] && neighbor[y][x] == 3;
                 System.out.printf("%2s",alive[y][x] ? "#" : " ");
             }
             System.out.println();
         }
         // Waiting Time before printing the next map!
-        Thread.sleep(1000);
+        System.out.println("Generations left: "+ (gen-1) );
+        Thread.sleep(750);
         // Important to not Load map into the last slot ! alive is the needed array for the next check!
         nextGeneration(neighborCheck(alive),gen -1, alive);
     }
 }
-  /*
-               // First Solving attempt ! in nextGeneration this was the condition!
-                    (neighbor[y][x] == 2 && (neighbor[y][x-1]== 3 && neighbor[y][x+1] == 3
-                    || neighbor[y-1][x] == 3 && neighbor[y+1][x] == 3))
-
-            // Problem lies here !
-                if (map[y][x] && count == 3 || count == 2) {
-                        map[y][x] = true;
-                        }
-                        if (!map[y][x] && count == 3 ) {
-                        map[y][x] = true;
-                        }
-                        if (count > 3 || count < 2) {
-                        map[y][x] = false;
-                }
-            // End of the problem !
-*/
-
 
