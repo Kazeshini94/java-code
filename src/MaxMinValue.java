@@ -4,12 +4,17 @@ public class MaxMinValue {
     public static void main(String[] args) {
 
         Random rng = new Random();
+        ArrayList<Integer> usedNumber = new ArrayList<>();
 
-        int max, min;
-        int[] array = new int[20];
-
+        int max, min,roll;
+        int[] array = new int[30];
         for (int i = 0; i < array.length; i++) {
-            array[i] = rng.nextInt(101);
+            do {
+                roll = rng.nextInt(0, array.length * 10);
+            }
+            while (usedNumber.contains(roll));
+            usedNumber.add(roll);
+            array[i] = roll;
         }
 
         max = maxValue(array, 0);
@@ -30,7 +35,7 @@ public class MaxMinValue {
         return Math.max(arr[index], max);
         }
 
-        public static int minValue ( int[] arr, int index){
+        public static int minValue (int[] arr, int index){
         // Divide
         if (index >= arr.length - 2) {
             return Math.min(arr[index], arr[index + 1]);
