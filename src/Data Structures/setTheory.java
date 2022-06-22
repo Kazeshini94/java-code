@@ -10,6 +10,7 @@ public class setTheory {
         List <Integer> arrC = new ArrayList<>
                 (Arrays.asList(41, 12, 5, 35, 42, 28, 47, 20, 26, 24, 50, 40, 14, 17, 10));
 
+
         System.out.println("UnionList:\nAuBuC: "+ union(union(arrA,arrB),arrC));
         System.out.println("IntersectionList: \nAnB: " + intersection(arrA,arrB) +"\nBnC: " + intersection(arrB,arrC) +
                            "\nAnC: " + intersection(arrA,arrC));
@@ -19,7 +20,9 @@ public class setTheory {
         System.out.println("Union with IntersectionList:\nAu(BnC): " + union(arrA,intersection(arrB,arrC)) +
                            "\nBu(AnC): "+ union(arrB,intersection(arrA,arrC)) +
                            "\nCu(AnB): " + union(arrC,intersection(arrA,arrB)));
+
     }
+
     public static List<Integer> union(List<Integer> list, List<Integer> listAdd) {
         Set<Integer> unionList = new HashSet<>(list);
 
@@ -27,6 +30,7 @@ public class setTheory {
 
         return new ArrayList<>(unionList);
     }
+
     public static List<Integer> intersection(List<Integer> list, List<Integer> listCompare) {
         Set<Integer> intersectionList = new HashSet<>();
 
@@ -37,6 +41,7 @@ public class setTheory {
         }
     return new ArrayList<>(intersectionList);
     }
+
     public static List<Integer> difference(List<Integer> list, List<Integer> listCompare) {
         Set<Integer> differenceList = new HashSet<>();
 
