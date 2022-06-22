@@ -1,0 +1,49 @@
+Index: src/GameOfLife.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class GameOfLife {\r\n    public static void main(String[] args) {\r\n\r\n        int length = 10;\r\n        String cell;\r\n        String alive= \"#\";\r\n        String dead = \" \";\r\n\r\n\r\n\r\n        for(int column = 0; column < length; column++) {\r\n            for(int row = 0; row < length; row++) {\r\n\r\n                if\r\n                    cell=alive;\r\n                }else {\r\n                    cell=dead;\r\n                }\r\n\r\n                System.out.printf(\"%2s\",cell);\r\n            }\r\n            System.out.println();\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/GameOfLife.java b/src/GameOfLife.java
+--- a/src/GameOfLife.java	
++++ b/src/GameOfLife.java	
+@@ -1,26 +1,23 @@
++import java.util.Arrays;
++
+ public class GameOfLife {
+     public static void main(String[] args) {
+ 
+         int length = 10;
+-        String cell;
+-        String alive= "#";
+-        String dead = " ";
+-
+-
+-
+-        for(int column = 0; column < length; column++) {
+-            for(int row = 0; row < length; row++) {
++        boolean[][] map = new boolean[length][length];
+ 
+-                if
+-                    cell=alive;
+-                }else {
+-                    cell=dead;
+-                }
+-
+-                System.out.printf("%2s",cell);
++        for(int y=0; y< map.length; y++) {
++            for (int x=0; x< map.length; x++) {
++                System.out.print(map[y][x]);
+             }
+             System.out.println();
+         }
++    }
++
++
++    public String Cell (boolean[][] map){
++
++        boolean cell = false;
+ 
+     }
+ }
