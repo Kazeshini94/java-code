@@ -6,66 +6,74 @@ public class MergeSort {
     public static void main(String[] args) {
 
         Random rng = new Random();
-        ArrayList<Integer> usedNumber = new ArrayList<>();
+        List<Integer> usedNumber = new ArrayList<>();
+        int[] arr = new int[10000];
         long startTime;
-        List<Integer> list = new ArrayList<>();
-        int counter = 0;
-
+        int roll,len = arr.length;
+        // Declaring random values to the Array!
+        for (int i = 0; i < len; i++) {
+            do {
+                roll = rng.nextInt(0, len * 10);
+            }
+            while (usedNumber.contains(roll));
+            usedNumber.add(roll);
+            arr[i] = roll;
+        }
         startTime = System.currentTimeMillis();
-        mergeSort(list);
-        System.out.println(list);
+        mergeSort(arr);
+        System.out.println(Arrays.toString(arr));
         System.out.println("Completed in: " + (System.currentTimeMillis() - startTime) + "ms!");
     }
 
-    public static void mergeSort(List<Integer> list) {
-        if (list.size() <= 1) {
+    public static void mergeSort(int[] arr) {
+        if (arr.length <= 1) {
             return;
         }
 
-        int mid = list.size() / 2;
-        int counter = 0;
+        int mid = arr.length / 2;
+        int counter=0;
 
-        List<Integer> left = new ArrayList<>(mid);
-        List<Integer> right = new ArrayList<>(list.size() - mid);
-        for (int i = 0; i < list.size(); i++) {
+        int[] left = new int[mid];
+        int[] right = new int[arr.length - mid];
+        for (int i = 0; i < arr.length; i++) {
             if (i < mid) {
-                left.set(i, list.get(i));
+                left[i] = arr[i];
             } else {
-                right.set(counter, list.get(i));
+                right[counter] = arr[i];
                 counter++;
             }
         }
         // Recursion until both Arrays are divided to size 1 !
         mergeSort(left);
         mergeSort(right);
-        // Merge Left and Right into list in right order!
-        merge(list, left, right);
+        // Merge Left and Right into arr in right order!
+        merge(arr, left, right);
     }
 
-    public static void merge(List<Integer> array,List<Integer> left,List<Integer> right) {
+    public static void merge(int[] array, int[] left, int[] right) {
         // Integers to Pick the right Value from each Array!
         int checkIndex = 0, checkL = 0, checkR = 0;
         // Comparing Values in Both Sub-Arrays and placing it in the right position!
-        while (checkL < left.size() && checkR < right.size()) {
+        while (checkL < left.length && checkR < right.length) {
             // Going from Low to High number!
-            if (left.get(checkL) < right.get(checkR)) {
-                array.set(checkIndex, left.get(checkL));
+            if (left[checkL] < right[checkR]) {
+                array[checkIndex] =  left[checkL];
                 checkL++;
             } else {
-                array.set(checkIndex, right.get(checkR));
+                array[checkIndex] = right[checkR];
                 checkR++;
             }
             checkIndex++;
         }
         // If only Left Array is left append!
-        while (checkL < left.size()) {
-            array.set(checkIndex, left.get(checkL));
+        while (checkL < left.length) {
+            array[checkIndex] = left[checkL];
             checkIndex++;
             checkL++;
         }
         // Same for Right Array until nothing left!
-        while (checkR < right.size()) {
-            array.set(checkIndex, right.get(checkR));
+        while (checkR < right.length) {
+            array[checkIndex] = right[checkR];
             checkIndex++;
             checkR++;
         }

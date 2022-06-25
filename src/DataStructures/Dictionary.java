@@ -3,10 +3,8 @@ package DataStructures;
 import java.util.*;
 
 public class Dictionary {
-
     static Map<String, String> dictionaryDeToEn = new HashMap<>();
     static Map<String, String> dictionaryEnToDe = new HashMap<>();
-
     public static void main(String[] args) {
 
         add("Schule","School");

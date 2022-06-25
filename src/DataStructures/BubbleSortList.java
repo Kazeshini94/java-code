@@ -1,7 +1,5 @@
 package DataStructures;
-
 import java.util.*;
-
 public class BubbleSortList {
     public static void main(String[] args) {
 
