@@ -118,7 +118,7 @@ public class LinkedList  {
     }
 
     // Getter of Individual Node
-    public Node get(String value) {
+    public Node getNode(String value) {
         if (head.text.equalsIgnoreCase(value)) {
             return head;
         }
@@ -127,11 +127,26 @@ public class LinkedList  {
         while (!temp.next.text.equalsIgnoreCase(value)) {
             temp = temp.next;
             if (temp.next == null) { // If Value is not in the List! IgnoreCase Safe!
-                System.out.println("!Value not Found!");
+                System.out.println("!!Value not Found!!");
                 return null;
             }
         }
         return temp.next.next; // skip a Node and then Return the Node of the next Pointer
+    }
+    // Getter of Individual Node Value
+    public String getValue(String value) {
+        if (head.text.equalsIgnoreCase(value)) {
+            return head.text;
+        }
+        Node temp = head;
+        // As Long as the Next Node Value does not equal Value
+        while (!temp.next.text.equalsIgnoreCase(value)) {
+            temp = temp.next;
+            if (temp.next == null) { // If Value is not in the List! IgnoreCase Safe!
+                return  "!!Value not Found!!";
+            }
+        }
+        return temp.next.text;
     }
 }
 

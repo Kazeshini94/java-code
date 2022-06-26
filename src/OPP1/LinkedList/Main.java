@@ -15,11 +15,11 @@ public class Main {
         // To Show functionality of created Methods!
         System.out.println("----START----");
         list.push("Surprise");
-        System.out.println(list.get(""));
         list.addAfter(second,"bam!");
         list.append("End of Fun!");
         list.printList();
         System.out.println("----END-1---");
+        System.out.println(list.getValue("Header"));
         list.remove("surprise");
         list.removeFirst();
         list.removeLast();
