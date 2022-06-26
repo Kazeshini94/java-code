@@ -3,6 +3,7 @@ package OPP1.PeopleManagement;
 import java.time.LocalDate;
 
 public class Person {
+    // Variables of Class Person!
     private String firstName;
     private LocalDate birthday;
     private String lastName;

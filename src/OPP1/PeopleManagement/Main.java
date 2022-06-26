@@ -2,7 +2,6 @@ package OPP1.PeopleManagement;
 
 import java.time.LocalDate;
 
-
 public class Main {
     public static void main(String[] args) {
 
@@ -19,12 +18,9 @@ public class Main {
         // Setting the Lastname of person 2 making her -> Shania Strife!
         manager.person.get(2).setLastName("Strife");
         // Setting an Address for person 1 aka Max
-        manager.person.get(1).setHome(new Address("Linz",4020));
-
+        manager.person.get(1).setHome(new Address("Austria","Linz",4020));
 
         // Just Checking different inputs ☻
-        System.out.println(manager.person.get(1).getFirstName());
-
-
+        System.out.println(manager.person.get(1).getHome().getLand());
     }
 }

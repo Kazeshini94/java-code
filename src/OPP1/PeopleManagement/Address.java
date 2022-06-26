@@ -1,25 +1,30 @@
 package OPP1.PeopleManagement;
 
 public class Address {
-    private String land = "Austria";
-    private String location = "Marchtrenk";
-    private int postal = 4614;
-    private String street = "Schopenhauerstrasse";
-    private String door = "8a";
+    // Variables of Class Address !
+    private String land;
+    private String location;
+    private int postal;
+    private String street;
+    private String door;
 
-
-//    Address() {
-//        this.land = "Austria";
-//        this.location = "Marchtrenk";
-//        this.postal = 4614;
-//        this.street = "Schopenhauerstrasse";
-//        this.door = "8";
-//    }
-    // From the code above to the basic constructor below !  What's different!?
+    //  Constructors of Address
     Address() {
+        this.land = "Austria";
+        this.location = "Marchtrenk";
+        this.postal = 4614;
+        this.street = "Schopenhauerstrasse";
+        this.door = "8";
     }
-
-    Address(String location, int postal) {
+    Address(String land, String location, int postal, String street, String door) {
+        this.land = land;
+        this.location = location;
+        this.postal = postal;
+        this.street = street;
+        this.door = door;
+    }
+    Address(String land, String location, int postal) {
+        this.land = land;
         this.location = location;
         this.postal = postal;
     }
