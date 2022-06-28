@@ -1,4 +1,4 @@
-package OPP1.PeopleManagement;
+package PeopleManagement;
 
 public class Address {
     // Variables of Class Address !

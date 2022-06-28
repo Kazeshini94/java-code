@@ -1,4 +1,4 @@
-package OPP1.PeopleManagement;
+package PeopleManagement;
 
 import java.time.LocalDate;
 
@@ -16,11 +16,12 @@ public class Main {
                                 Person.Gender.MAN, LocalDate.of(2000, 12, 23), new Address());
 
         // Setting the Lastname of person 2 making her -> Shania Strife!
-        manager.person.get(2).setLastName("Strife");
+        manager.list.get(2).setLastName("Strife");
         // Setting an Address for person 1 aka Max
-        manager.person.get(1).setHome(new Address("Austria","Linz",4020));
+        manager.list.get(1).setHome(new Address("Austria","Linz",4020));
+
 
         // Just Checking different inputs ☻
-        System.out.println(manager.person.get(1).getHome().getLand());
+        System.out.println(manager.list.get(0).getHome().getLocation());
     }
 }

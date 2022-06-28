@@ -1,38 +1,36 @@
-package OPP1.LinkedList;
+package LinkedList;
 
-public class LinkedList  {
+import DoubleLinkedList.List;
+
+public class LinkedList<T>  {
     // When Creating Object of LinkedList, that object can take the Value of Node head!
-    Node head; // Variable of Type Node called head!
+    Node<?> head; // Variable of Type Node called head!
+
     // Basic Layout for Node! ( With String Type )
-    static class Node {
-        String text;
-        Node next;
-        Node(String input) {
-            text = input;
-            next = null;
-        }
+    LinkedList() {
+        head = new Node<>("Head");
     }
     // Printing the Full List!
     public void printList() {
         // First Example of Node head usage!! :)
-        Node node = head;
+        Node<?> node = head;
         while (node != null) {
-            System.out.println(node.text + " ");
+            System.out.println(node.value + " ");
             node = node.next;
         }
     }
 
     // Ways of Adding new Nodes!
-    public void push(String text) {
+    public void push(String value) {
         // Creating Node to add with <T> value
-        Node newNode = new Node(text);
+        Node<?> newNode = new Node<>(value);
 
         // To add at the Start of the list!
         newNode.next = head; // New Node Points -> to actual Head!
         head = newNode; // New Node becomes the new Head!
     }
-    public void addAfter(Node addAfter, String text) {
-        Node newNode = new Node(text);
+    public void addAfter(Node<?> addAfter, String value) {
+        Node<?> newNode = new Node<>(value);
 
         // Checking if Node is last Node! which would require other function to add !
         if (addAfter == null) {
@@ -43,18 +41,18 @@ public class LinkedList  {
         newNode.next = addAfter.next; // new Pointer copies existing Node pointer
         addAfter.next = newNode; // Existing Node Pointer becomes new Node
     }
-    public void append(String text) {
-        Node newNode = new Node(text);
+    public void append(String input) {
+        Node<?> newNode = new Node<>(input);
 
         // Checking if head (Start of Nodes) has any value, if not add new Node as Head!
         if (head == null) {
-            head = new Node(text);
+            head = new Node<>(input);
             return;
         }
         newNode.next = null; // Since this will be the Last Node  it Points -> to NULL
 
         // To Add to the End of the list
-        Node temp = head; // we Create temporary Node copying Head
+        Node<?> temp = head; // we Create temporary Node copying Head
         while (temp.next != null) { // As long as temp does not Point -> to NULL
             temp = temp.next;   // temp becomes the Pointer
         }
@@ -71,7 +69,7 @@ public class LinkedList  {
         head = head.next; // head becomes the Node It's pointing to !
     }
     public void removeLast() {
-        Node temp = head;
+        Node<?> temp = head;
         while( temp.next.next != null) { // As long as the NEXT Pointer doesn`t point to NULL (LAST pointer)
             temp = temp.next; // temp becomes the Node its pointing to !!
         }
@@ -90,13 +88,13 @@ public class LinkedList  {
         */
     public void remove(String value) {
         // If Head Value is Value to remove! Ignore Case Safe!
-        if (head.text.equalsIgnoreCase(value)) {
+        if (head.value == value ) {
             head = head.next;
             return;
         }
-        Node temp = head;
+        Node<?> temp = head;
         // As Long as the Next Node Value does not equal Value
-        while (!temp.next.text.equalsIgnoreCase(value)) {
+        while (temp.next.value != value ) {
             temp = temp.next;
             if (temp.next == null) { // If Value is not in the List! IgnoreCase Safe!
                 System.out.println("!Value not Found!");
@@ -109,22 +107,22 @@ public class LinkedList  {
     // Size of the List!
     public void size() {
         int size = 0;
-        Node temp = head;
+        Node<?> temp = head;
         while (temp != null) {
             temp = temp.next;
             size++;
         }
-        System.out.println(size);
+        System.out.println("ListSize: "+size);
     }
 
     // Getter of Individual Node
-    public Node getNode(String value) {
-        if (head.text.equalsIgnoreCase(value)) {
+    public Node<?> getNode(T value) {
+        if (head.value == value ) {
             return head;
         }
-        Node temp = head;
+        Node<?> temp = head;
         // As Long as the Next Node Value does not equal Value
-        while (!temp.next.text.equalsIgnoreCase(value)) {
+        while (temp.next.value != value) {
             temp = temp.next;
             if (temp.next == null) { // If Value is not in the List! IgnoreCase Safe!
                 System.out.println("!!Value not Found!!");
@@ -135,18 +133,18 @@ public class LinkedList  {
     }
     // Getter of Individual Node Value
     public String getValue(String value) {
-        if (head.text.equalsIgnoreCase(value)) {
-            return head.text;
+        if (head.value == value) {
+            return (String) head.value;
         }
-        Node temp = head;
+        Node<?> temp = head;
         // As Long as the Next Node Value does not equal Value
-        while (!temp.next.text.equalsIgnoreCase(value)) {
+        while (temp.next.value != value) {
             temp = temp.next;
             if (temp.next == null) { // If Value is not in the List! IgnoreCase Safe!
-                return  "!!Value not Found!!";
+                return "!!Value not Found!!";
             }
         }
-        return temp.next.text;
+        return temp.next.value.toString(); // returns the value of the next Node as String
     }
 }
 

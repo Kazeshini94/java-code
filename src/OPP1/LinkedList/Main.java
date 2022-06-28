@@ -1,26 +1,20 @@
-package OPP1.LinkedList;
+package LinkedList;
 
 public class Main {
     public static void main(String[] args) {
 
-        LinkedList list = new LinkedList();
+        LinkedList<?> list = new LinkedList<>();
 
-        list.head = new LinkedList.Node("Header");
-        LinkedList.Node second = new LinkedList.Node("Second");
-        LinkedList.Node third = new LinkedList.Node("Third");
-
-        list.head.next = second;
-        second.next = third;
 
         // To Show functionality of created Methods!
         System.out.println("----START----");
         list.push("Surprise");
-        list.addAfter(second,"bam!");
+        list.addAfter(list.head, String.valueOf(69));
         list.append("End of Fun!");
         list.printList();
         System.out.println("----END-1---");
         System.out.println(list.getValue("Header"));
-        list.remove("surprise");
+        list.remove();
         list.removeFirst();
         list.removeLast();
         list.printList();
