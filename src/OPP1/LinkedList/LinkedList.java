@@ -1,12 +1,8 @@
-package LinkedList;
-
-import DoubleLinkedList.List;
+package OPP1.LinkedList;
 
 public class LinkedList<T>  {
-    // When Creating Object of LinkedList, that object can take the Value of Node head!
+    // When Creating Object of LinkedList, that object can use Node Head!!
     Node<?> head; // Variable of Type Node called head!
-
-    // Basic Layout for Node! ( With String Type )
     LinkedList() {
         head = new Node<>("Head");
     }
@@ -15,7 +11,7 @@ public class LinkedList<T>  {
         // First Example of Node head usage!! :)
         Node<?> node = head;
         while (node != null) {
-            System.out.println(node.value + " ");
+            System.out.println(node.value);
             node = node.next;
         }
     }
@@ -26,8 +22,8 @@ public class LinkedList<T>  {
         Node<?> newNode = new Node<>(value);
 
         // To add at the Start of the list!
-        newNode.next = head; // New Node Points -> to actual Head!
-        head = newNode; // New Node becomes the new Head!
+        newNode.next = head.next; // New Node Pointer copies Head Pointer
+        head.next = newNode; // New Node becomes Head Pointer
     }
     public void addAfter(Node<?> addAfter, String value) {
         Node<?> newNode = new Node<>(value);
@@ -116,22 +112,24 @@ public class LinkedList<T>  {
     }
 
     // Getter of Individual Node
-    public Node<?> getNode(T value) {
-        if (head.value == value ) {
-            return head;
-        }
+    // Per Index
+    public Object get(int index) {
         Node<?> temp = head;
-        // As Long as the Next Node Value does not equal Value
-        while (temp.next.value != value) {
+        int count = 0;
+
+        while(temp != null && count != index) {
             temp = temp.next;
-            if (temp.next == null) { // If Value is not in the List! IgnoreCase Safe!
-                System.out.println("!!Value not Found!!");
-                return null;
-            }
+            count++;
         }
-        return temp.next.next; // skip a Node and then Return the Node of the next Pointer
+
+        try {
+            return temp.value;
+        } catch (NullPointerException npe) {
+            System.out.print("Node = ");
+            return null;
+        }
     }
-    // Getter of Individual Node Value
+    // Per Node Value
     public String getValue(String value) {
         if (head.value == value) {
             return (String) head.value;

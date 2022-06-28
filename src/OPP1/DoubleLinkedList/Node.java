@@ -1,4 +1,4 @@
-package DoubleLinkedList;
+package OPP1.DoubleLinkedList;
 
 public class Node<T> {
 

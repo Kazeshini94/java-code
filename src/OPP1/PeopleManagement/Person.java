@@ -1,4 +1,4 @@
-package PeopleManagement;
+package OPP1.PeopleManagement;
 
 import java.time.LocalDate;
 

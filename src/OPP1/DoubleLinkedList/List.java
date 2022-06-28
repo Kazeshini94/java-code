@@ -1,4 +1,4 @@
-package DoubleLinkedList;
+package OPP1.DoubleLinkedList;
 
 public class List {
 
@@ -6,8 +6,8 @@ public class List {
     Node<?> tail;
 
     List() {
-       head = new Node<>("Head");
-       tail = new Node<>("Tail");
+       head = new Node<>("Hello");
+       tail = new Node<>("World");
 
        head.prev = null;
        head.next = tail;
@@ -15,7 +15,6 @@ public class List {
        tail.prev = head;
        tail.next = null;
     }
-
     // Ways of Adding Nodes !
     public <T> void push(T value) {
         Node<?> newNode = new Node<>(value);
@@ -24,19 +23,6 @@ public class List {
         newNode.next = head; // New Node next Points -> to actual Head!
         newNode.prev = null; // & prev Points -> to NULL
         head = newNode; // New Node becomes the new Head!
-    }
-    public <T> void add(int index, T value) {
-        Node<?> newNode = new Node<>(value);
-        Node<?> temp = head;
-        int count = 0;
-        while (temp.next != null && count != index) {
-            count++;
-            temp = temp.next;
-        }
-        temp.prev.next = newNode;
-        newNode.next = temp;
-        newNode.prev = temp.prev;
-        temp.prev = newNode;
     }
     public <T> void append(T value) {
         Node<?> newNode = new Node<>(value);
@@ -49,7 +35,34 @@ public class List {
         newNode.prev = tail;
         tail = newNode;
     }
-
+    // This Function makes push and append useless! since it incorporates both!
+    public <T> void add(int index, T value) {
+        Node<?> newNode = new Node<>(value);
+        Node<?> temp = head;
+        int count = 0;
+        while (temp.next != null && count != index) {
+            count++;
+            temp = temp.next;
+        }
+        if( temp == head ) {
+            newNode.next = head;
+            newNode.prev = null;
+            head.prev  = newNode;
+            head = newNode;
+        }
+        else if (temp == tail) {
+            tail.next = newNode;
+            newNode.next = null;
+            newNode.prev = tail;
+            tail = newNode;
+        }
+        else {
+            temp.prev.next = newNode;
+            newNode.prev = temp.prev;
+            newNode.next = temp;
+            temp.prev = newNode;
+        }
+    }
     // Ways to Remove !
     public void remove(Node<?> delNode) {
         if (head == delNode) {
@@ -75,6 +88,17 @@ public class List {
         temp.prev.next = temp.next;
     }
 
+    public int size() {
+        Node<?> temp = head;
+        int size = 0;
+        while (temp != null) {
+            size++;
+            temp = temp.next;
+        }
+        return size;
+    }
+
+    // Output of List in Both Directions!
     public void printList() {
         Node<?> temp = head;
 
@@ -83,7 +107,6 @@ public class List {
             temp = temp.next;
         }
     }
-
     public void printListReverse() {
         Node<?> temp = tail;
 
@@ -92,32 +115,23 @@ public class List {
             temp = temp.prev;
         }
     }
-
-    public int size() {
-        Node<?> temp = head;
-        int size = 0;
-        while (temp != null) {
-            size++;
-            temp = temp.next;
-        }
-       return size;
-    }
-    public Node<?> seekList(int index) {
+    // Getter of Node Value per Index
+    public Object seekList(int index) {
         Node<?> temp = head;
         int count = 0;
         while (temp.next != null && count != index) {
             count++;
             temp = temp.next;
         }
-        return temp;
+        return temp.value;
     }
-    public Node<?> seekListReverse(int index) {
+    public Object seekListReverse(int index) {
         Node<?> temp = tail;
         int count = 0 ;
         while (temp.prev != null && count != index) {
             count++;
             temp = temp.prev;
         }
-        return temp;
+        return temp.value;
     }
 }

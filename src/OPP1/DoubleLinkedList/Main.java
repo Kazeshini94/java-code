@@ -1,4 +1,4 @@
-package DoubleLinkedList;
+package OPP1.DoubleLinkedList;
 
 
 public class Main {
@@ -7,16 +7,18 @@ public class Main {
         List list = new List();
 
         list.push(666);
-        list.add(2,"ADD");
         list.append("?END?");
+        list.add(2,"ADD"); // if Index is too high  value gets Appended to the end!
+        list.append("BAM");
+        list.push(2);
 
-
+        System.out.println("-----START-----");
         list.printList();
-        System.out.println("The List contains: " + list.size() + " Nodes!" );
+        System.out.println("\nThe List contains: " + list.size() + " Nodes!\n");
         list.printListReverse();
 
-        System.out.println("List Getter Below!");
-        System.out.println(list.seekList(0).value);
-        System.out.println(list.seekListReverse(0).value);
+        System.out.println("\nList Getter Below!");
+        System.out.println(list.seekList(0));
+        System.out.println(list.seekListReverse(0));
     }
 }
