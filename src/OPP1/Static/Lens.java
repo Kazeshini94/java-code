@@ -5,7 +5,7 @@ public class Lens {
     private int minFocalLength;
     private int maxFocalLength;
 
-    public static int lensCounter;
+    private static int lensCounter;
 
     // Constructors
     public Lens() {
@@ -18,12 +18,11 @@ public class Lens {
             if (min < max) {
                 minFocalLength = min;
                 maxFocalLength = max;
+                lensCounter++;
             }
             else {
                 throw new NumberFormatException("Max Focal length can`t be lower than mins!");
             }
-
-        lensCounter++;
     }
 
     // Setters & Getters

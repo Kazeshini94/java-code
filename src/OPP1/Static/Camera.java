@@ -8,7 +8,7 @@ public class Camera {
     private boolean flag;
     private Lens lens;
 
-    public static int CameraCounter;
+    private static int CameraCounter;
 
     // Constructor
     public Camera() {
@@ -16,7 +16,16 @@ public class Camera {
         this.megaPixels = 0;
         this.displaySize = 0;
         this.flag = true;
-        this.lens = new Lens(20,110);
+        this.lens = new Lens();
+
+        CameraCounter++;
+    }
+    public Camera(String brand,int megaPixels,int displaySize,boolean flag,Lens lens) {
+        this.brand = brand;
+        this.megaPixels = megaPixels;
+        this.displaySize = displaySize;
+        this.flag = flag;
+        this.lens = lens;
 
         CameraCounter++;
     }
@@ -60,7 +69,6 @@ public class Camera {
     public int getCameraCounter() {
         return CameraCounter;
     }
-
     public int getLensCounter() {
         return  lens.getLensCounter();
     }
