@@ -10,7 +10,6 @@ public class Main {
         list.append("?END?");
         list.add(2,"ADD"); // if Index is too high  value gets Appended to the end!
         list.append("BAM");
-        list.push(2);
 
         System.out.println("-----START-----");
         list.printList();
