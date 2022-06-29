@@ -12,9 +12,9 @@ public class Camera {
 
     // Constructor
     public Camera() {
-        this.brand = "";
-        this.megaPixels = 0;
-        this.displaySize = 0;
+        this.brand = "Xiaomi";
+        this.megaPixels = 1040;
+        this.displaySize = 360;
         this.flag = true;
         this.lens = new Lens();
 
