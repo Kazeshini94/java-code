@@ -1,4 +1,4 @@
-package OPP1.LinkedList;
+package LinkedList;
 
 public class Node<T> {
     T value;

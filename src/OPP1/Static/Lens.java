@@ -1,4 +1,4 @@
-package OPP1.Static;
+package Static;
 
 public class Lens {
 
@@ -23,6 +23,12 @@ public class Lens {
             else {
                 throw new NumberFormatException("Max Focal length can`t be lower than mins!");
             }
+    }
+
+    @Override
+    public String toString() {
+        return  " Lens:\t MinFocal: " + minFocalLength +
+                "\n\t\t MaxFocal: " + maxFocalLength;
     }
 
     // Setters & Getters

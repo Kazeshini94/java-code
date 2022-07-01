@@ -1,12 +1,12 @@
-package OPP1.DoubleLinkedList;
+package DoubleLinkedList;
 
 public class Node<T> {
 
-    T value;
-    Node<?> next;
-    Node<?> prev;
+    public T value;
+    public Node<?> next;
+    public Node<?> prev;
 
-    Node(T type) {
+    public Node(T type) {
         value = type;
         next = null;
         prev = null;

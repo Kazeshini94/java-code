@@ -1,4 +1,4 @@
-package OPP1.Static;
+package Static;
 
 public class Camera {
 
@@ -28,6 +28,15 @@ public class Camera {
         this.lens = lens;
 
         CameraCounter++;
+    }
+
+    @Override
+    public String toString() {
+        return "Camera:  Brand: " + brand +
+                "\n\t\t MegaPixels: " + megaPixels +
+                "\n\t\t DisplaySize: " + displaySize +
+                "\n\t\t Colored: " + (flag? "Yes" : "No") +
+                "\n" + getLens().toString();
     }
 
     // Setter & Getter

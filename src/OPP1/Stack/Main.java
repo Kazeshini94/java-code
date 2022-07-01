@@ -1,13 +1,9 @@
-package OPP1.Stack;
-
-import OPP1.DoubleLinkedList.List;
-
+package Stack;
 
 public class Main {
     public static void main(String[] args) {
 
-
-        List stack = new List(3,69);
+        Stack stack = new Stack(3,69);
 
         System.out.println("-----Deck----");
         stack.push(666);
@@ -22,10 +18,9 @@ public class Main {
         System.out.print("POP ");
         stack.pop();
         System.out.print("POP ");
-        stack.pop();
+        stack.pop(2);
         System.out.println("Stack size = " + stack.size());
         stack.peek();
-
 
     }
 }

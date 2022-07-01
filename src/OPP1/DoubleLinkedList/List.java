@@ -1,4 +1,4 @@
-package OPP1.DoubleLinkedList;
+package DoubleLinkedList;
 
 public class List {
 
@@ -6,16 +6,16 @@ public class List {
     public Node<?> tail;
     // Double Linked List Constructors
     public List() {
-       head = new Node<>("Moon");
-       tail = new Node<>("Abyss");
+        head = new Node<>("Moon");
+        tail = new Node<>("Abyss");
 
-       head.prev = null;
-       head.next = tail;
+        head.prev = null;
+        head.next = tail;
 
-       tail.prev = head;
-       tail.next = null;
+        tail.prev = head;
+        tail.next = null;
     }
-    public List (int first,int last) {
+    public List(int first,int last) {
         head = new Node<>(first);
         tail = new Node<>(last);
 
@@ -25,6 +25,7 @@ public class List {
         tail.prev = head;
         tail.next = null;
     }
+
     // Ways of Adding Nodes !
     public <T> void push(T value) {
         Node<?> newNode = new Node<>(value);
@@ -81,7 +82,7 @@ public class List {
     // Ways to Remove !
     public void remove(Node<?> delNode) {
         if (head == delNode) {
-            head = delNode.next;
+            head = head.next;
             head.prev = null;
             return;
         }
@@ -148,71 +149,5 @@ public class List {
             temp = temp.prev;
         }
         return temp.value;
-    }
-
-    // Functions for Stack aka LiFo - Last In / First Out
-    public void peek() {
-        try {
-            System.out.println(tail.value);
-        } catch (NullPointerException e) {
-            System.out.println("!Empty Stack!");
-        }
-    }
-    public void pop() {
-        try {
-            peek();
-            tail = tail.prev;
-            tail.next = null;
-            if (head == tail) {
-                head = tail = null;
-            }
-        } catch (NullPointerException ignored){
-        }
-    }
-    public void pop(int n) {
-        Node<?> temp = tail;
-        int count = n;
-
-        try {
-            while(temp != null && count != 0) {
-                System.out.println(temp.value);
-                count--;
-                temp = temp.prev;
-                temp.next = null;
-
-            }
-        } catch (NullPointerException e) {
-            System.out.println("This deletes the Whole Stack!");
-            head = tail = null;
-        }
-    }
-
-    // Functions for Queue aka FiFo - First In First Out
-    public void dequeue() {
-        if (head == null) {
-            System.out.println("Queue is Empty!");
-            return;
-        }
-        System.out.println(head.value);
-        try {
-            delete(0);
-        } catch (NullPointerException e) {
-            head = head.next;
-        }
-    }
-    public void dequeue(int n) {
-        int count = n;
-
-        try {
-            while(head != null && count != 0) {
-                System.out.println(head.value);
-                count--;
-                head = head.next;
-                head.prev = null;
-            }
-        } catch (NullPointerException e) {
-            System.out.println("This deletes the Whole Queue!");
-            head = tail = null;
-        }
     }
 }

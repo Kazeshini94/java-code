@@ -1,4 +1,4 @@
-package OPP1.LinkedList;
+package LinkedList;
 
 public class LinkedList<T>  {
     // When Creating Object of LinkedList, that object can use Node Head!!
