@@ -1,3 +1,5 @@
+package UnitTesting;
+
 public class Square {
 
     public int calculate(int length) throws IllegalArgumentException {

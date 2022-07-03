@@ -26,9 +26,10 @@ public class Queue extends List {
     }
 
     // Functions for Queue aka FiFo - First In First Out
-    public void dequeue() {
+    public void deQueue() {
         if (head == null) {
             System.out.println("Queue is Empty!");
+            tail = null;
             return;
         }
         System.out.println(head.value);
@@ -38,7 +39,7 @@ public class Queue extends List {
             head = head.next;
         }
     }
-    public void dequeue(int n) {
+    public void deQueue(int n) {
         int count = n;
 
         try {

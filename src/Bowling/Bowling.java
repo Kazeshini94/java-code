@@ -1,4 +1,4 @@
-package OPP1.Bowling;
+package Bowling;
 
 import java.util.*;
 
@@ -16,10 +16,9 @@ public class Bowling {
        String maxPlayer= "";
        Iterator<Map.Entry<String, Integer>> it = players.entrySet().iterator();
        while (it.hasNext()) {
-           Map.Entry<String, Integer> me = it.next();
-           for (Map.Entry ignored : players.entrySet()) {
-               if((Integer) ignored.getValue() == max ) {
-                   maxPlayer = (String) ignored.getKey();
+           for (Map.Entry entry : players.entrySet()) {
+               if((Integer) entry.getValue() == max ) {
+                   maxPlayer = (String) entry.getKey();
                }
            }
        }

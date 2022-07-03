@@ -34,12 +34,9 @@ public class Stack extends List {
     }
     public void pop() {
         try {
-            peek();
+            System.out.println(tail.value);
             tail = tail.prev;
             tail.next = null;
-            if (head == tail) {
-                head = tail = null;
-            }
         } catch (NullPointerException ignored){
         }
     }
@@ -67,5 +64,15 @@ public class Stack extends List {
             System.out.println("This deletes the Whole Stack!");
             head = tail = null;
         }
+    }
+    @Override
+    public int size() {
+        Node<?> temp = tail;
+        int size = 0;
+        while (temp != null) {
+            size++;
+            temp = temp.prev;
+        }
+        return size;
     }
 }
