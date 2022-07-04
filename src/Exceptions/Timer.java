@@ -3,8 +3,8 @@ package Exceptions;
 public class Timer {
 
     static int day = 0;
-    private int hour;
-    private int min;
+    int hour;
+    int min;
 
     public Timer(){
         this.hour = 0;
@@ -21,16 +21,33 @@ public class Timer {
         if (day == 1)
             return;
 
-        Thread.sleep(10);
-        setMin(min++);;
-        if (getMin() == 60) {
-            setHour(hour++);
-            setMin(min -= 60);
+        // One Tick of the Timer = 1 Min!
+        Thread.sleep(1);
+        min++;
+        // Increasing the Hour Timer!
+        if (min == 60) {
+            hour++;
+            min -= 60;
         }
-        if (getHour() == 24) {
-            System.out.println("A New Day");
+        if (hour == 7 && min == 30) {
+            System.out.println("7:30 !WAKE UP! 7:30");
+            throw new InterruptedException("Alarm Clock");
+        }
+
+        if (hour == 8 && min == 30) {
+            System.out.println("8:30 !CodersBay Start Learning! 8:30");
+            throw new InterruptedException("Work");
+        }
+
+        if (hour == 12 && min == 30) {
+            System.out.println("12:30 !! Lunch Break !! 12:30");
+            throw new InterruptedException("Lunch");
+        }
+
+        if (hour == 24) {
+            System.out.println("!!! End of the Day !!!");
             day++;
-            setHour(hour -= 24);
+            hour -= 24;
         }
         run();
     }

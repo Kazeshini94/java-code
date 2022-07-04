@@ -8,8 +8,7 @@ public class MyFrame extends JFrame {
     MyFrame() {
 
         panel = new MyPanel();
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setBackground(Color.BLACK);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(panel);
         this.pack();
         this.setLocationRelativeTo(null);
