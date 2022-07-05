@@ -1,21 +1,11 @@
 package DoubleLinkedList;
 
-public class List {
+public class List<T> {
 
-    public Node<?> head;
-    public Node<?> tail;
-    // Double Linked List Constructors
-    public List() {
-        head = new Node<>("Moon");
-        tail = new Node<>("Abyss");
+    public Node<T> head;
+    public Node<T> tail;
 
-        head.prev = null;
-        head.next = tail;
-
-        tail.prev = head;
-        tail.next = null;
-    }
-    public List(int first,int last) {
+    public List(T first, T last) {
         head = new Node<>(first);
         tail = new Node<>(last);
 
@@ -27,8 +17,8 @@ public class List {
     }
 
     // Ways of Adding Nodes !
-    public <T> void push(T value) {
-        Node<?> newNode = new Node<>(value);
+    public void push(T value) {
+        Node<T> newNode = new Node<>(value);
         if (head == null) {
             head = newNode;
             tail = head;
@@ -40,10 +30,12 @@ public class List {
         newNode.prev = null; // & prev Points -> to NULL
         head = newNode; // New Node becomes the new Head!
     }
-    public <T> void append(T value) {
-        Node<?> newNode = new Node<>(value);
+
+    public void append(T value) {
+        Node<T> newNode = new Node<>(value);
         if (tail == null) {
             tail = newNode;
+            head = tail;
             return;
         }
         tail.next = newNode;
@@ -51,50 +43,51 @@ public class List {
         newNode.prev = tail;
         tail = newNode;
     }
+
     // This Function makes push and append useless! since it incorporates both!
-    public <T> void add(int index, T value) {
-        Node<?> newNode = new Node<>(value);
-        Node<?> temp = head;
-        int count = 0;
-        while (temp.next != null && count != index) {
+    public void add(Integer index, T value) {
+        Node<T> newNode = new Node<>(value);
+        Node<T> temp = head;
+        Integer count = 0;
+        while (temp.next != null && !count.equals(index)) {
             count++;
             temp = temp.next;
         }
-        if( temp == head ) {
+        if (temp == head) {
             newNode.next = head;
             newNode.prev = null;
-            head.prev  = newNode;
+            head.prev = newNode;
             head = newNode;
-        }
-        else if (temp == tail) {
+        } else if (temp == tail) {
             tail.next = newNode;
             newNode.next = null;
             newNode.prev = tail;
             tail = newNode;
-        }
-        else {
+        } else {
             temp.prev.next = newNode;
             newNode.prev = temp.prev;
             newNode.next = temp;
             temp.prev = newNode;
         }
     }
+
     // Ways to Remove !
-    public void remove(Node<?> delNode) {
+    public void remove(Node<T> delNode) {
         if (head == delNode) {
             head = head.next;
             head.prev = null;
             return;
         }
-        if ( delNode.next != null ) { // As long as delNode next does not Point to NULL
+        if (delNode.next != null) { // As long as delNode next does not Point to NULL
             delNode.next.prev = delNode.prev; // next Node prev Pointer becomes  prev Pointer of delNode
         }
-        if ( delNode.prev != null) { // As long as delNode prev does not Point to NULL
+        if (delNode.prev != null) { // As long as delNode prev does not Point to NULL
             delNode.prev.next = delNode.next; // prev Node next Pointer becomes next Pointer of delNode
         }
     }
-    public void delete(int index) {
-        Node<?> temp = head;
+
+    public void delete(Integer index) {
+        Node<T> temp = head;
         int count = 0;
         while (temp.next != null && count != index) {
             count++;
@@ -105,7 +98,7 @@ public class List {
     }
 
     public int size() {
-        Node<?> temp = head;
+        Node<T> temp = head;
         int size = 0;
         while (temp != null) {
             size++;
@@ -116,35 +109,38 @@ public class List {
 
     // Output of List in Both Directions!
     public void printList() {
-        Node<?> temp = head;
+        Node<T> temp = head;
 
         while (temp != null) {
             System.out.println(temp.value);
             temp = temp.next;
         }
     }
+
     public void printListReverse() {
-        Node<?> temp = tail;
+        Node<T> temp = tail;
 
         while (temp != null) {
             System.out.println(temp.value);
             temp = temp.prev;
         }
     }
+
     // Getter of Node Value per Index
-    public Object seekList(int index) {
-        Node<?> temp = head;
-        int count = 0;
-        while (temp.next != null && count != index) {
+    public T seekList(Integer index) {
+        Node<T> temp = head;
+        Integer count = 0;
+        while (temp.next != null && !count.equals(index)) {
             count++;
             temp = temp.next;
         }
         return temp.value;
     }
-    public Object seekListReverse(int index) {
-        Node<?> temp = tail;
-        int count = 0 ;
-        while (temp.prev != null && count != index) {
+
+    public T seekListReverse(Integer index) {
+        Node<T> temp = tail;
+        Integer count = 0;
+        while (temp.prev != null && !count.equals(index)) {
             count++;
             temp = temp.prev;
         }

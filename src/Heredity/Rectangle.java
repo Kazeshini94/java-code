@@ -3,7 +3,7 @@ package Heredity;
 import java.awt.*;
 
 public class Rectangle extends Shapes {
-    //
+    // Parameter
     private double length;
     private double width;
 
@@ -16,41 +16,48 @@ public class Rectangle extends Shapes {
         setColor(color);
         setFilled(isFilled);
     }
+
     public Rectangle(double length, double width) throws IllegalArgumentException {
         if (width <= 0 || length <= 0)
             throw new IllegalArgumentException("Length or Width can`t be 0 or lower!");
         this.length = length;
         this.width = width;
     }
+
     // Methods
     @Override
     public double getArea() {
-        return length*width;
+        return length * width;
     }
+
     @Override
     public double getPerimeter() {
-        return 2*length + 2*width;
+        return 2 * length + 2 * width;
     }
+
     @Override
     public String toString() {
-        return String.format("%15s %s %8.2f %s %9.2f %s %10.2f %s %.2f",
+        return String.format("%15s %s %8.2f %s %9.2f %s %10.2f %s %7.2f",
                 "! Rectangle ! ",
                 "\nLength: ", length,
                 "\nWidth: ", width,
-                "\nArea: " , getArea(),
-                "\nPerimeter: " , getPerimeter() );
+                "\nArea: ", getArea(),
+                "\nOutline: ", getPerimeter());
     }
 
     // Setter & Getter
     public double getLength() {
         return length;
     }
+
     public void setLength(double length) {
         this.length = length;
     }
+
     public double getWidth() {
         return width;
     }
+
     public void setWidth(double width) {
         this.width = width;
     }

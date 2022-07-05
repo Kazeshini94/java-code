@@ -1,57 +1,47 @@
 package Queue;
 
-import DoubleLinkedList.*;
+import DoubleLinkedList.List;
 
-public class Queue extends List {
+public class Queue extends List<Number> {
     // Constructor
-    public Queue() {
-        head = new Node<>(0);
-        tail = new Node<>(99);
-
-        head.prev = null;
-        head.next = tail;
-
-        tail.prev = head;
-        tail.next = null;
-    }
-    public Queue(int first, int last) {
-        head = new Node<>(first);
-        tail = new Node<>(last);
-
-        head.prev = null;
-        head.next = tail;
-
-        tail.prev = head;
-        tail.next = null;
+    public Queue(Number first, Number last) {
+        super(first, last);
     }
 
     // Functions for Queue aka FiFo - First In First Out
-    public void deQueue() {
+    public Number deQueue() {
         if (head == null) {
             System.out.println("Queue is Empty!");
             tail = null;
-            return;
+            return null;
         }
-        System.out.println(head.value);
-        try {
-            delete(0);
-        } catch (NullPointerException e) {
-            head = head.next;
-        }
-    }
-    public void deQueue(int n) {
-        int count = n;
+        Number value = 0;
 
         try {
-            while(head != null && count != 0) {
-                System.out.println(head.value);
-                count--;
+            value = head.value;
+            head = head.next;
+            head.prev = null;
+        } catch (NullPointerException ignored) {
+        }
+        return value;
+    }
+
+    public Number[] deQueue(int n) {
+        int count = 0;
+        Number[] values = new Number[n];
+
+
+        try {
+            while (head != null && count != n) {
+                values[count] = head.value;
                 head = head.next;
                 head.prev = null;
+                count++;
             }
         } catch (NullPointerException e) {
             System.out.println("This deletes the Whole Queue!");
             head = tail = null;
         }
+        return values;
     }
 }

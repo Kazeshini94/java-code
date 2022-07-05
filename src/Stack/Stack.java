@@ -1,73 +1,62 @@
 package Stack;
 
-import DoubleLinkedList.*;
+import DoubleLinkedList.List;
+import DoubleLinkedList.Node;
 
-public class Stack extends List {
+public class Stack extends List<Number> {
     // Constructors
-    public Stack() {
-        head = new Node<>(0);
-        tail = new Node<>(99);
 
-        head.prev = null;
-        head.next = tail;
-
-        tail.prev = head;
-        tail.next = null;
+    public Stack(Number first, Number last) {
+        super(first, last);
     }
-    public Stack(int first, int last) {
-        head = new Node<>(first);
-        tail = new Node<>(last);
 
-        head.prev = null;
-        head.next = tail;
-
-        tail.prev = head;
-        tail.next = null;
-    }
     // Functions for Stack aka LiFo - Last In / First Out
-    public void peek() {
-        try {
-            System.out.println(tail.value);
-        } catch (NullPointerException e) {
-            System.out.println("!Empty Stack!");
-        }
+    public Number peek() throws StackTooSmallException {
+        if (tail == null)
+            throw new StackTooSmallException("Empty Stack!");
+        return tail.value;
     }
-    public void pop() {
+
+    public Number pop() throws StackTooSmallException {
+        if (tail == null) {
+            throw new StackTooSmallException("Empty Stack!");
+        }
+        Number pop = 0;
+
         try {
-            System.out.println(tail.value);
+            pop = tail.value;
             tail = tail.prev;
             tail.next = null;
-        } catch (NullPointerException ignored){
+        } catch (NullPointerException ignored) {
         }
+        return pop;
     }
-    public void pop(int n) {
-        Node<?> temp = tail;
-        int count = n;
+
+    public Number[] pop(Integer n) throws StackTooSmallException {
+        if (tail == null) {
+            throw new StackTooSmallException("Empty Stack!");
+        }
+        Number[] values = new Number[n];
+        Node<Number> temp = tail;
+        int count = 0;
 
         try {
-            do {
-                System.out.println(tail.value);
-                tail = tail.prev;
-                tail.next = null;
-                if (head == tail) {
-                    head = tail = null;
-                }
-                count--;
-            } while (count != 0);
-//            while(temp != null && count != 0) {
-//                System.out.println(temp.value);
-//                count--;
-//                temp = temp.prev;
-//                temp.next = null;
-//            }
+            while (count != n || temp != null) {
+                values[count] = temp.value;
+                temp = temp.prev;
+                temp.next = null;
+                count++;
+            }
         } catch (NullPointerException e) {
             System.out.println("This deletes the Whole Stack!");
             head = tail = null;
         }
+        return values;
     }
+
     @Override
     public int size() {
-        Node<?> temp = tail;
+        Node<Number> temp = tail;
         int size = 0;
         while (temp != null) {
             size++;
