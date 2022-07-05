@@ -2,7 +2,7 @@ package LinkedList;
 
 public class Node<T> {
     T value;
-    Node<?> next;
+    Node<T> next;
     // Basic Layout for Node! ( With String Type )
     Node(T data) {
         value = data;

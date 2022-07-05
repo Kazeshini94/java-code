@@ -1,15 +1,18 @@
 package LinkedList;
 
-public class LinkedList<T>  {
+public class LinkedList<T> {
+
     // When Creating Object of LinkedList, that object can use Node Head!!
-    Node<?> head; // Variable of Type Node called head!
+    Node<T> head; // Variable of Type Node called head!
+    int counter;
     LinkedList() {
-        head = new Node<>("Head");
+        head = new Node<>((T) "Head");
     }
+
     // Printing the Full List!
     public void printList() {
         // First Example of Node head usage!! :)
-        Node<?> node = head;
+        Node<T> node = head;
         while (node != null) {
             System.out.println(node.value);
             node = node.next;
@@ -17,16 +20,17 @@ public class LinkedList<T>  {
     }
 
     // Ways of Adding new Nodes!
-    public void push(String value) {
+    public void push(T value) {
         // Creating Node to add with <T> value
-        Node<?> newNode = new Node<>(value);
+        Node<T> newNode = new Node<>(value);
 
         // To add at the Start of the list!
         newNode.next = head.next; // New Node Pointer copies Head Pointer
         head.next = newNode; // New Node becomes Head Pointer
     }
-    public void addAfter(Node<?> addAfter, String value) {
-        Node<?> newNode = new Node<>(value);
+
+    public void addAfter(Node<T> addAfter, T value) {
+        Node<T> newNode = new Node<>(value);
 
         // Checking if Node is last Node! which would require other function to add !
         if (addAfter == null) {
@@ -37,8 +41,9 @@ public class LinkedList<T>  {
         newNode.next = addAfter.next; // new Pointer copies existing Node pointer
         addAfter.next = newNode; // Existing Node Pointer becomes new Node
     }
-    public void append(String input) {
-        Node<?> newNode = new Node<>(input);
+
+    public void append(T input) {
+        Node<T> newNode = new Node<>(input);
 
         // Checking if head (Start of Nodes) has any value, if not add new Node as Head!
         if (head == null) {
@@ -48,7 +53,7 @@ public class LinkedList<T>  {
         newNode.next = null; // Since this will be the Last Node  it Points -> to NULL
 
         // To Add to the End of the list
-        Node<?> temp = head; // we Create temporary Node copying Head
+        Node<T> temp = head; // we Create temporary Node copying Head
         while (temp.next != null) { // As long as temp does not Point -> to NULL
             temp = temp.next;   // temp becomes the Pointer
         }
@@ -61,16 +66,19 @@ public class LinkedList<T>  {
             head = null; // If not head Becomes NULL!
         }
     }
+
     public void removeFirst() {
         head = head.next; // head becomes the Node It's pointing to !
     }
+
     public void removeLast() {
-        Node<?> temp = head;
-        while( temp.next.next != null) { // As long as the NEXT Pointer doesn`t point to NULL (LAST pointer)
+        Node<T> temp = head;
+        while (temp.next.next != null) { // As long as the NEXT Pointer doesn`t point to NULL (LAST pointer)
             temp = temp.next; // temp becomes the Node its pointing to !!
         }
         temp.next = null; // temp Pointer -> to NULL
     }
+
     /*
      Useless Method since the Method below handles it better!
         public void remove(Node remove) {
@@ -82,15 +90,15 @@ public class LinkedList<T>  {
                                     // Skipping the actual Remove Node
         }
         */
-    public void remove(String value) {
+    public void remove(T value) {
         // If Head Value is Value to remove! Ignore Case Safe!
-        if (head.value == value ) {
+        if (head.value == value) {
             head = head.next;
             return;
         }
-        Node<?> temp = head;
+        Node<T> temp = head;
         // As Long as the Next Node Value does not equal Value
-        while (temp.next.value != value ) {
+        while (temp.next.value != value) {
             temp = temp.next;
             if (temp.next == null) { // If Value is not in the List! IgnoreCase Safe!
                 System.out.println("!Value not Found!");
@@ -101,23 +109,23 @@ public class LinkedList<T>  {
     }
 
     // Size of the List!
-    public void size() {
+    public int size() {
         int size = 0;
-        Node<?> temp = head;
+        Node<T> temp = head;
         while (temp != null) {
             temp = temp.next;
             size++;
         }
-        System.out.println("ListSize: "+size);
+        return size;
     }
 
     // Getter of Individual Node
     // Per Index
-    public Object get(int index) {
-        Node<?> temp = head;
+    public T get(int index) {
+        Node<T> temp = head;
         int count = 0;
 
-        while(temp != null && count != index) {
+        while (temp != null && count != index) {
             temp = temp.next;
             count++;
         }
@@ -129,20 +137,60 @@ public class LinkedList<T>  {
             return null;
         }
     }
+
     // Per Node Value
-    public String getValue(String value) {
+    public T getValue(T value) {
         if (head.value == value) {
-            return (String) head.value;
+            return head.value;
         }
-        Node<?> temp = head;
+        Node<T> temp = head;
         // As Long as the Next Node Value does not equal Value
         while (temp.next.value != value) {
             temp = temp.next;
             if (temp.next == null) { // If Value is not in the List! IgnoreCase Safe!
-                return "!!Value not Found!!";
+                return (T) "!!Value not Found!!";
             }
         }
-        return temp.next.value.toString(); // returns the value of the next Node as String
+        // returns the value of the next Node as String
+        return temp.next.value;
+    }
+
+    public void reverseIterative() {
+        Node<T> temp = head;
+
+        // Iterating to the Last Node!
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+
+        temp.next = head; // Setting Last Node Pointer to Head!
+        temp = head.next; // tempNode starts at Second Node!
+        head.next = null; // Head points to NULL
+        head = temp.next; // Head becomes the Third Node!
+
+        temp.next = head.next.next; // Second Node points to previous Head node!
+        head.next.next = temp; // Last Node Pointer becomes Second Node!
+        temp = head.next; // tempNode becomes the Fourth Node / Last Node!
+        head.next = temp.next; // Third Node points to second!
+        temp.next = head; // Last Node Points to Third!
+        head = temp; // Head becomes the Last Node!
+    }
+
+    public void reverseRecursive(int size) {
+        if (size <= 0) {
+            return;
+        }
+
+        Node<T> temp = head.next;
+        counter = 0;
+
+        while (temp.next != null || counter != size) {
+            temp = temp.next;
+            head = temp;
+            counter++;
+        }
+        reverseRecursive(size-1);
+
     }
 }
 
