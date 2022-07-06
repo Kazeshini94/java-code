@@ -11,7 +11,7 @@ public class getAverage {
 
         System.out.println("Wieviele Noten gibt es zu Bewerten?");
         int result = 0, length = scanner.nextInt();
-        String text = "";
+
         int[] array =  new int[length];
         for (int i = 0; i < length; i++) {
             System.out.print("Note: ");
