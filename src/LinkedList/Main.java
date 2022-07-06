@@ -32,20 +32,24 @@ public class Main {
 //        System.out.println("----END-3---");
 
         list.removeFirst();
+        System.out.println("------BASE------");
         list.append("First");
         list.append("Second");
         list.append("Third");
         list.append("Fourth");
         list.append("Fifth");
-        list.append("Sixth");
+        list.append("69");
+
 
         list.printList();
-        System.out.println("----------------");
-        list.reverseIterative();
+        System.out.println("-----SECOND------");
+        list.reverseList(list.size());
+        list.append("!BAM!");
         list.printList();
 
-        System.out.println("Head: " + list.head.value);
-
+        System.out.println("------THIRD------");
+        list.reverseList(list.size());
+        list.printList();
 
         //Output printList -> First, Second, Third, Fourth  (head == First)
 

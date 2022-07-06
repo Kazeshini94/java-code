@@ -143,7 +143,7 @@ public class LinkedList<T> {
         return temp.next.value.toString(); // returns the value of the next Node as String
     }
 
-    // Wrong Solution ( it works but the method is meh )
+//     Wrong Solution ( it works but the method is meh )
 //    public void reverseIterative() {
 //        Node<T> temp = head;
 //
@@ -164,48 +164,86 @@ public class LinkedList<T> {
 //        head = temp; // Head Becomes Last Node
 //    }
 
-    public void reverseIterative() {
+
+    // Nearly there ... only works with even numbered ListSize
+    public void reverseEvenNumberList() {
 
         Node<T> t1 = head.next; // T1 Becomes the Second Node
         Node<T> t2 = t1.next; // T2 Becomes The Third Node
         head.next = null;   // Head Points to NULL
-        t1.next = head; // Second Node Points to Head
 
-        // As long as T2 does not Point to NULL
-        while (t2.next != null) {
+        // As long as T1 does not Point to NULL
+        while (t1.next != null ) {
 
-            head = t2.next; // Head Becomes Fourth Node
-            t2.next = t1; // Third Node Points to Second Node
-            t1 = head.next; // T1 Becomes Fifth Node
-            head.next = t2; // Fifth Node Points to Fourth Node
-            t2 = t1.next; // Fourth Node becomes Sixth Node
+            t1.next = head;
+            head = t2;
+            t2 = t1;
+            t1 = head.next;
+            head.next = t2;
+            t2 = t1.next;
         }
 
-        t2.next = t1; // Sixth Node Points to Fifth
-        t1.next = head; // Fifth Points Fourth
-        head = t2; // Sixth Node becomes Head!
+        t1.next = head;
+        head = t1;
     }
 
-    public void reverseIterativeExtra() {
+    // NEARLYYYY or not ... works with uneven numbered ListSize
+    public void reverseUnEvenNumberList() {
+        Node<T> t1 = head.next; // T1 Becomes the Second Node
+        Node<T> t2 = t1.next; // T2 Becomes The Third Node
+        head.next = null;   // Head Points to NULL
+
+        while (t2.next != null ) {
+
+            t1.next = head;
+            head = t2;
+            t2 = t1;
+            t1 = head.next;
+            head.next = t2;
+            t2 = t1.next;
+
+        }
+
+        t1.next = head;
+        t2.next = t1;
+        head = t2;
+    }
+    // Combined both above Methods and it works now!!  still way too  much code!
+    public void reverseList(int size) {
 
         Node<T> t1 = head.next; // T1 Becomes the Second Node
         Node<T> t2 = t1.next; // T2 Becomes The Third Node
         head.next = null;   // Head Points to NULL
-        t1.next = head; // Second Node Points to Head
 
-        // As long as T2 does not Point to NULL
-        while (t2.next != null) {
+        if (size % 2 == 0 ) {
+            while (t1.next != null) {
 
-            head = t2.next; // Head Becomes Fourth Node
-            t2.next = t1; // Third Node Points to Second Node
-            t1 = head.next; // T1 Becomes Fifth Node
-            head.next = t2; // Fifth Node Points to Fourth Node
-            t2 = t1.next; // Fourth Node becomes Sixth Node
+                t1.next = head;
+                head = t2;
+                t2 = t1;
+                t1 = head.next;
+                head.next = t2;
+                t2 = t1.next;
+            }
+
+            t1.next = head;
+            head = t1;
+        } else {
+            while (t2.next != null ) {
+
+                t1.next = head;
+                head = t2;
+                t2 = t1;
+                t1 = head.next;
+                head.next = t2;
+                t2 = t1.next;
+
+            }
+
+            t1.next = head;
+            t2.next = t1;
+            head = t2;
         }
-
-        t2.next = t1;
-        t1.next = head;
-        head = t2;
     }
 }
 
