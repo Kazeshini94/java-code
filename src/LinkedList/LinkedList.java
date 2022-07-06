@@ -144,21 +144,68 @@ public class LinkedList<T> {
     }
 
     // Wrong Solution ( it works but the method is meh )
-    public void reverseIterative() {
-        Node<T> temp = head;
+//    public void reverseIterative() {
+//        Node<T> temp = head;
+//
+//        while (temp.next != null) {
+//            temp = temp.next;
+//        }
+//
+//        temp.next = head; // Last Node points to Head
+//        temp = head.next; // Temp becomes Second Node!
+//        head.next = null; // Head Points to NULL
+//
+//        head = temp.next; // Head becomes Third Node
+//        temp.next = temp.next.next.next; // Second Node Points to First
+//        head.next.next = temp; // Last Node Points to Second Node
+//        temp = head.next; // Temp becomes Fourth / Last Node
+//        head.next = temp.next; // Third Node Points to second Node
+//        temp.next = head; // Last Node Points to Third Node
+//        head = temp; // Head Becomes Last Node
+//    }
 
-        while (temp != null) {
-            temp = temp.next;
+    public void reverseIterative() {
+
+        Node<T> t1 = head.next; // T1 Becomes the Second Node
+        Node<T> t2 = t1.next; // T2 Becomes The Third Node
+        head.next = null;   // Head Points to NULL
+        t1.next = head; // Second Node Points to Head
+
+        // As long as T2 does not Point to NULL
+        while (t2.next != null) {
+
+            head = t2.next; // Head Becomes Fourth Node
+            t2.next = t1; // Third Node Points to Second Node
+            t1 = head.next; // T1 Becomes Fifth Node
+            head.next = t2; // Fifth Node Points to Fourth Node
+            t2 = t1.next; // Fourth Node becomes Sixth Node
         }
-        temp = head;
-        while (counter != 0) {
-            temp = temp.next;
-        }
+
+        t2.next = t1; // Sixth Node Points to Fifth
+        t1.next = head; // Fifth Points Fourth
+        head = t2; // Sixth Node becomes Head!
     }
 
+    public void reverseIterativeExtra() {
 
-    public void reverseRecursive() {
+        Node<T> t1 = head.next; // T1 Becomes the Second Node
+        Node<T> t2 = t1.next; // T2 Becomes The Third Node
+        head.next = null;   // Head Points to NULL
+        t1.next = head; // Second Node Points to Head
 
+        // As long as T2 does not Point to NULL
+        while (t2.next != null) {
+
+            head = t2.next; // Head Becomes Fourth Node
+            t2.next = t1; // Third Node Points to Second Node
+            t1 = head.next; // T1 Becomes Fifth Node
+            head.next = t2; // Fifth Node Points to Fourth Node
+            t2 = t1.next; // Fourth Node becomes Sixth Node
+        }
+
+        t2.next = t1;
+        t1.next = head;
+        head = t2;
     }
 }
 

@@ -36,11 +36,15 @@ public class Main {
         list.append("Second");
         list.append("Third");
         list.append("Fourth");
+        list.append("Fifth");
+        list.append("Sixth");
 
         list.printList();
         System.out.println("----------------");
         list.reverseIterative();
         list.printList();
+
+        System.out.println("Head: " + list.head.value);
 
 
         //Output printList -> First, Second, Third, Fourth  (head == First)
