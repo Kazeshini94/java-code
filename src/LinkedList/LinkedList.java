@@ -1,17 +1,10 @@
 package LinkedList;
 
 public class LinkedList<T> {
-<<<<<<< HEAD
     // When Creating Object of LinkedList, that object can use Node Head!!
     Node<T> head; // Variable of Type Node called head!
     int counter = 0;
 
-=======
-
-    // When Creating Object of LinkedList, that object can use Node Head!!
-    Node<T> head; // Variable of Type Node called head!
-    int counter;
->>>>>>> 8b3ec42d6e9c35e06df154de39f809e833fcf5ee
     LinkedList() {
         head = new Node<>((T) "Head");
     }
@@ -86,20 +79,6 @@ public class LinkedList<T> {
         temp.next = null; // temp Pointer -> to NULL
     }
 
-<<<<<<< HEAD
-=======
-    /*
-     Useless Method since the Method below handles it better!
-        public void remove(Node remove) {
-            Node temp = head;  // Create temporary Node copying head!
-            while(temp.next != remove) { // Runs until Pointer of temp shows to Remove
-                temp = temp.next;
-            }
-            temp.next = remove.next; // Temp Pointer becomes Remove Pointer!
-                                    // Skipping the actual Remove Node
-        }
-        */
->>>>>>> 8b3ec42d6e9c35e06df154de39f809e833fcf5ee
     public void remove(T value) {
         // If Head Value is Value to remove! Ignore Case Safe!
         if (head.value == value) {
@@ -121,7 +100,7 @@ public class LinkedList<T> {
     // Size of the List!
     public int size() {
         int size = 0;
-        Node<T> temp = head;
+        Node<?> temp = head;
         while (temp != null) {
             temp = temp.next;
             size++;
@@ -131,11 +110,7 @@ public class LinkedList<T> {
 
     // Getter of Individual Node
     // Per Index
-<<<<<<< HEAD
     public String get(int index) {
-=======
-    public T get(int index) {
->>>>>>> 8b3ec42d6e9c35e06df154de39f809e833fcf5ee
         Node<T> temp = head;
         int count = 0;
 
@@ -153,58 +128,19 @@ public class LinkedList<T> {
     }
 
     // Per Node Value
-    public T getValue(T value) {
+    public String getValue(String value) {
         if (head.value == value) {
-            return head.value;
+            return (String) head.value;
         }
         Node<T> temp = head;
         // As Long as the Next Node Value does not equal Value
         while (temp.next.value != value) {
             temp = temp.next;
             if (temp.next == null) { // If Value is not in the List! IgnoreCase Safe!
-                return (T) "!!Value not Found!!";
+                return "!!Value not Found!!";
             }
         }
-        // returns the value of the next Node as String
-        return temp.next.value;
-    }
-
-    public void reverseIterative() {
-        Node<T> temp = head;
-
-        // Iterating to the Last Node!
-        while (temp.next != null) {
-            temp = temp.next;
-        }
-
-        temp.next = head; // Setting Last Node Pointer to Head!
-        temp = head.next; // tempNode starts at Second Node!
-        head.next = null; // Head points to NULL
-        head = temp.next; // Head becomes the Third Node!
-
-        temp.next = head.next.next; // Second Node points to previous Head node!
-        head.next.next = temp; // Last Node Pointer becomes Second Node!
-        temp = head.next; // tempNode becomes the Fourth Node / Last Node!
-        head.next = temp.next; // Third Node points to second!
-        temp.next = head; // Last Node Points to Third!
-        head = temp; // Head becomes the Last Node!
-    }
-
-    public void reverseRecursive(int size) {
-        if (size <= 0) {
-            return;
-        }
-
-        Node<T> temp = head.next;
-        counter = 0;
-
-        while (temp.next != null || counter != size) {
-            temp = temp.next;
-            head = temp;
-            counter++;
-        }
-        reverseRecursive(size-1);
-
+        return temp.next.value.toString(); // returns the value of the next Node as String
     }
 
     // Wrong Solution ( it works but the method is meh )
@@ -272,5 +208,4 @@ public class LinkedList<T> {
         head = t2;
     }
 }
-
 
